@@ -21,6 +21,7 @@ body{font-family:-apple-system,'Hiragino Sans','Yu Gothic',sans-serif;background
 .chapter-card .progress-bar{height:4px;background:#243156;border-radius:2px;margin-top:10px;overflow:hidden}
 .chapter-card .progress-fill{height:100%;border-radius:2px;transition:width .4s}
 .chapter-card .progress-txt{font-size:.68rem;color:#6b7a99;margin-top:4px}
+.chapter-card .chapter-summary{font-size:.7rem;color:#7a8aaa;line-height:1.55;margin-top:7px;margin-bottom:4px}
 .chapter-card .badge-new{position:absolute;top:10px;right:10px;background:#3a7bfd;color:#fff;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:20px}
 
 /* ── Map view ── */
@@ -53,6 +54,8 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
 .quiz-opt.disabled{pointer-events:none}
 .quiz-exp{display:none;font-size:.78rem;color:#a0b4cc;background:#0f1923;border-radius:8px;padding:10px;margin-top:8px;line-height:1.6}
 .quiz-exp.show{display:block}
+.quiz-reset-btn{width:100%;margin-top:14px;padding:10px;background:#1e3050;border:1.5px solid #3a4a6a;border-radius:10px;color:#8892a4;font-size:.82rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.quiz-reset-btn:active{background:#243560}
 #sheet-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#6b7a99;font-size:1.4rem;cursor:pointer}
 
 /* scrollbar */
@@ -2429,6 +2432,20 @@ const TERM_DB = {
 };
 
 // ══════════════════════════════════════════════════════════════
+//  CHAPTER SUMMARIES
+// ══════════════════════════════════════════════════════════════
+const CHAPTER_SUMMARIES = {
+  1: "AIの定義・レベル分類 ／ チューリングテスト・シンギュラリティ ／ フレーム問題・記号接地・身体性 ／ ダートマス会議・第1〜3次AIブーム",
+  2: "探索（DFS・BFS・A*）・ゲーム木（Mini-Max・α-β刈り・MCTS） ／ 知識表現・エキスパートシステム ／ 機械学習の台頭 ／ ディープラーニング登場・基盤モデル",
+  3: "教師あり学習（回帰・分類） ／ SVM・決定木・ランダムフォレスト・勾配ブースティング ／ 教師なし学習・強化学習（Q学習） ／ 過学習・交差検証・評価指標（精度・F値・AUC）",
+  4: "パーセプトロン・MLP ／ 活性化関数（ReLU・Softmax・tanh） ／ 損失関数・正則化（Dropout・BatchNorm） ／ 誤差逆伝播・連鎖律・最適化手法（SGD・Adam）",
+  5: "CNN（フィルタ・受容野） ／ 正規化層・プーリング ／ スキップ結合（ResNet） ／ RNN・LSTM・GRU ／ Attention・Transformer・BERT・GPT ／ VAE・データ拡張",
+  6: "画像認識（分類・検出・セグメンテーション） ／ NLP（Word2Vec・LLM・RAG・CoT） ／ 生成AI（GAN・Diffusion） ／ 転移学習・RLHF・LoRA ／ XAI（SHAP・Grad-CAM）・軽量化",
+  7: "AIプロジェクト（CRISP-DM・MLOps・PoC） ／ データ収集・前処理・特徴量エンジニアリング ／ モデル運用・監視・A/Bテスト ／ 連合学習・差分プライバシー ／ 数理統計（ベイズ・線形代数）",
+  8: "個人情報保護法・著作権法（30条の4） ／ 特許法・不競法・独禁法 ／ AI倫理原則（公平性・透明性・アカウンタビリティ） ／ OECD AI原則・EU AI法・NIST RMF ／ アルゴリズムバイアス・敵対的攻撃",
+};
+
+// ══════════════════════════════════════════════════════════════
 //  PROGRESS  (LocalStorage)
 // ══════════════════════════════════════════════════════════════
 function getProgress(){
@@ -2438,7 +2455,24 @@ function setProgress(p){ localStorage.setItem('gkentei_progress',JSON.stringify(
 function markLearned(term){
   const p=getProgress(); p[term]=true; setProgress(p);
 }
+function unmarkLearned(term){
+  const p=getProgress(); delete p[term]; setProgress(p);
+}
 function isLearned(term){ return !!getProgress()[term]; }
+function setNodeGreen(term){
+  document.querySelectorAll(`[data-term="${CSS.escape(term)}"]`).forEach(el=>{
+    if(el.tagName==='rect'){el.setAttribute('fill','#1a4a30');el.setAttribute('stroke','#27ae60');}
+    else if(el.tagName==='text') el.setAttribute('fill','#5dde8a');
+  });
+}
+function setNodeDefault(term){
+  document.querySelectorAll(`[data-term="${CSS.escape(term)}"]`).forEach(el=>{
+    if(el.tagName==='rect'){
+      el.setAttribute('fill','rgba(10,18,34,0.9)');
+      el.setAttribute('stroke',el.getAttribute('data-color')||'#3498DB');
+    } else if(el.tagName==='text') el.setAttribute('fill','#c8d8f8');
+  });
+}
 
 // ══════════════════════════════════════════════════════════════
 //  MIND MAP RENDERER  (SVG radial layout — proportional alloc)
@@ -2607,24 +2641,27 @@ function drawL2(g,x,y,label,color){
 
 function drawTermNode(g,x,y,term,color,learned){
   const fs=6.2;
+  const hasDB=!!TERM_DB[term];
   const bw=Math.min(term.length*fs*0.6+14,80);
   const bh=fs+10;
   const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');
   rect.setAttribute('x',x-bw/2);rect.setAttribute('y',y-bh/2);
   rect.setAttribute('width',bw);rect.setAttribute('height',bh);
   rect.setAttribute('rx',5);
-  rect.setAttribute('fill',learned?'#1a4a30':'rgba(10,18,34,0.9)');
-  rect.setAttribute('stroke',learned?'#27ae60':color);
-  rect.setAttribute('stroke-width','1.2');
+  rect.setAttribute('fill', learned?'#1a4a30': hasDB?'rgba(10,18,34,0.9)':'rgba(22,24,38,0.75)');
+  rect.setAttribute('stroke', learned?'#27ae60': hasDB?color:'#363a54');
+  rect.setAttribute('stroke-width', hasDB?'1.2':'0.8');
   rect.setAttribute('class','term-node');
   rect.setAttribute('data-term',term);
+  rect.setAttribute('data-color',color);
   rect.style.cursor='pointer';
   g.appendChild(rect);
   const txt=document.createElementNS('http://www.w3.org/2000/svg','text');
   txt.setAttribute('x',x);txt.setAttribute('y',y+2.2);
   txt.setAttribute('text-anchor','middle');
-  txt.setAttribute('fill',learned?'#5dde8a':'#c8d8f8');
-  txt.setAttribute('font-size',fs);txt.setAttribute('font-weight','600');
+  txt.setAttribute('fill', learned?'#5dde8a': hasDB?'#c8d8f8':'#484d6a');
+  txt.setAttribute('font-size',fs);
+  txt.setAttribute('font-weight', hasDB?'600':'400');
   txt.setAttribute('font-family','-apple-system,"Hiragino Sans","Yu Gothic",sans-serif');
   txt.textContent=term;
   txt.setAttribute('class','term-node');
@@ -2773,17 +2810,7 @@ function openSheet(term){
     document.getElementById('sheet-term').textContent=db.term;
     document.getElementById('sheet-category').textContent=db.category;
     document.getElementById('sheet-explanation').textContent=db.explanation;
-    renderQuiz(db.questions);
-    markLearned(term);
-    // refresh node color
-    document.querySelectorAll(`[data-term="${CSS.escape(term)}"]`).forEach(el=>{
-      if(el.tagName==='rect'){
-        el.setAttribute('fill','#1a4a30');
-        el.setAttribute('stroke','#27ae60');
-      } else if(el.tagName==='text'){
-        el.setAttribute('fill','#5dde8a');
-      }
-    });
+    renderQuiz(db.questions, term);
   }
   document.getElementById('sheet-bg').style.display='block';
   document.getElementById('sheet').classList.add('open');
@@ -2807,10 +2834,12 @@ document.getElementById('sheet').addEventListener('touchend',e=>{
   sheetTouchY=null;
 },{passive:true});
 
-function renderQuiz(questions){
+function renderQuiz(questions, term){
   const area=document.getElementById('quiz-area');
   if(!questions||!questions.length){ area.innerHTML=''; return; }
   area.innerHTML='<h3>確認問題</h3>';
+  let correctCount=0;
+  const totalQ=questions.length;
   questions.forEach((q,qi)=>{
     const block=document.createElement('div');
     block.className='quiz-block';
@@ -2829,9 +2858,18 @@ function renderQuiz(questions){
         block.querySelectorAll('.quiz-opt').forEach(b=>b.classList.add('disabled'));
         if(oi===q.ans){
           btn.classList.add('correct');
+          correctCount++;
+          if(correctCount===totalQ && term){
+            markLearned(term);
+            setNodeGreen(term);
+          }
         } else {
           btn.classList.add('wrong');
           block.querySelectorAll('.quiz-opt')[q.ans].classList.add('correct');
+          if(term && isLearned(term)){
+            unmarkLearned(term);
+            setNodeDefault(term);
+          }
         }
         expDiv.classList.add('show');
       });
@@ -2844,6 +2882,14 @@ function renderQuiz(questions){
     block.appendChild(expDiv);
     area.appendChild(block);
   });
+  const resetBtn=document.createElement('button');
+  resetBtn.className='quiz-reset-btn';
+  resetBtn.textContent='↺ 回答をリセット';
+  resetBtn.addEventListener('click',()=>{
+    if(term){ unmarkLearned(term); setNodeDefault(term); }
+    renderQuiz(questions,term);
+  });
+  area.appendChild(resetBtn);
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -2863,15 +2909,13 @@ function renderHome(){
     const pct=total?Math.round(learned/total*100):0;
     card.innerHTML=`
       <h2>${ch.title}</h2>
-      ${ch.branches.length>0?`
-        <div>
-          <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${ch.color}"></div></div>
-          <div class="progress-txt">${learned}/${total} 用語 (${pct}%)</div>
-        </div>
-      `:`<div class="progress-txt" style="margin-top:10px;color:#3a4a6a">準備中</div>`}
+      <div class="chapter-summary">${CHAPTER_SUMMARIES[ch.id]||''}</div>
+      <div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${ch.color}"></div></div>
+        <div class="progress-txt">${learned}/${total} 用語 (${pct}%)</div>
+      </div>
     `;
     if(ch.branches.length>0){
-      if(ch.id===1) card.innerHTML+=`<span class="badge-new">MVP</span>`;
       card.addEventListener('click',()=>openMap(ch));
     }
     list.appendChild(card);
