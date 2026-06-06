@@ -58,6 +58,24 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
 .quiz-reset-btn:active{background:#243560}
 #sheet-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#6b7a99;font-size:1.4rem;cursor:pointer}
 
+/* ── Search overlay ── */
+#search-overlay{display:none;flex-direction:column;position:fixed;inset:0;background:#0f1923;z-index:200}
+#search-header{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#1a2744;flex-shrink:0}
+#search-input-wrap{flex:1;display:flex;align-items:center;background:#0f1923;border-radius:10px;padding:8px 12px;gap:8px;border:1px solid #243156}
+#search-input{flex:1;background:none;border:none;outline:none;color:#e8eaf0;font-size:.95rem;font-family:-apple-system,'Hiragino Sans','Yu Gothic',sans-serif}
+#search-input::placeholder{color:#3a4560}
+#search-cancel{background:none;border:none;color:#7eb3ff;font-size:.85rem;cursor:pointer;padding:4px 2px;white-space:nowrap}
+#search-results{flex:1;overflow-y:auto}
+.search-item{display:flex;flex-direction:column;padding:13px 20px;border-bottom:1px solid #141c2e;cursor:pointer;position:relative;gap:3px}
+.search-item:active{background:#1a2744}
+.search-term{font-size:.9rem;font-weight:700;color:#c8d8f8}
+.search-path{font-size:.7rem;color:#5a6a88}
+.search-db{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.6rem;padding:2px 7px;border-radius:20px;border:1px solid}
+.search-db.has{background:#1a4a30;color:#5dde8a;border-color:#27ae60}
+.search-db.none{background:#1a1e2e;color:#404460;border-color:#303450}
+.search-empty{padding:40px 20px;color:#3a4560;font-size:.85rem;text-align:center}
+#search-open-btn{background:none;border:none;color:#7eb3ff;font-size:1.2rem;cursor:pointer;padding:4px 6px;line-height:1}
+
 /* scrollbar */
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
@@ -69,8 +87,13 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
 <!-- ── Home screen ── -->
 <div id="home">
   <div id="home-header">
-    <h1>G検定 学習アプリ</h1>
-    <p>2026年7月4日 試験合格を目指す</p>
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <h1>G検定 学習アプリ</h1>
+        <p>2026年7月4日 試験合格を目指す</p>
+      </div>
+      <button id="search-open-btn" title="検索">🔍</button>
+    </div>
   </div>
   <div id="chapter-list" id="chapter-list"></div>
 </div>
@@ -80,12 +103,25 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
   <div id="map-header">
     <button id="btn-back">←</button>
     <h2 id="map-title"></h2>
+    <button id="search-open-btn-map" title="検索">🔍</button>
   </div>
   <div id="map-container">
     <div id="map-svg-wrap">
       <svg id="mindmap" xmlns="http://www.w3.org/2000/svg"></svg>
     </div>
   </div>
+</div>
+
+<!-- ── Search overlay ── -->
+<div id="search-overlay">
+  <div id="search-header">
+    <div id="search-input-wrap">
+      <span style="color:#3a4560;font-size:.9rem">🔍</span>
+      <input id="search-input" type="search" placeholder="用語・キーワードを検索..." autocomplete="off" autocorrect="off" spellcheck="false">
+    </div>
+    <button id="search-cancel">キャンセル</button>
+  </div>
+  <div id="search-results"></div>
 </div>
 
 <!-- ── Bottom sheet ── -->
@@ -2934,6 +2970,143 @@ document.getElementById('btn-back').addEventListener('click',()=>{
   document.getElementById('mapview').style.display='none';
   document.getElementById('home').style.display='flex';
   renderHome();
+});
+
+// ══════════════════════════════════════════════════════════════
+//  SEARCH
+// ══════════════════════════════════════════════════════════════
+let _searchIndex = null;
+
+function buildSearchIndex(){
+  if(_searchIndex) return _searchIndex;
+  _searchIndex = [];
+  CHAPTERS.forEach(ch=>{
+    const chTitle = ch.title.replace('\n',' ');
+    ch.branches.forEach(b=>{
+      b.children.forEach(c=>{
+        // L2ノード
+        _searchIndex.push({term:c.l2, chapter:ch, path:`${chTitle} › ${b.l1}`, isL2:true});
+        // L3ノード
+        c.terms.forEach(t=>{
+          _searchIndex.push({term:t, chapter:ch, path:`${chTitle} › ${b.l1} › ${c.l2}`, isL2:false});
+        });
+      });
+    });
+  });
+  return _searchIndex;
+}
+
+function doSearch(query){
+  if(!query.trim()) return [];
+  const q = query.toLowerCase();
+  const idx = buildSearchIndex();
+  const seen = new Set();
+  const results = [];
+
+  idx.forEach(item=>{
+    if(seen.has(item.term)) return;
+    const tl = item.term.toLowerCase();
+    const db = TERM_DB[item.term];
+    const inTerm = tl.includes(q);
+    const inExpl = db && (db.explanation.toLowerCase().includes(q) || db.term.toLowerCase().includes(q));
+    if(inTerm || inExpl){
+      seen.add(item.term);
+      results.push({...item, exact:(tl===q), hasDB:!!db});
+    }
+  });
+
+  results.sort((a,b)=>{
+    if(a.exact !== b.exact) return a.exact?-1:1;
+    if(a.hasDB !== b.hasDB) return a.hasDB?-1:1;
+    return 0;
+  });
+  return results.slice(0,25);
+}
+
+function renderSearchResults(results, query){
+  const area = document.getElementById('search-results');
+  if(!query.trim()){ area.innerHTML=''; return; }
+  if(!results.length){
+    area.innerHTML=`<div class="search-empty">「${query}」に一致する用語が見つかりません</div>`;
+    return;
+  }
+  area.innerHTML = results.map((r,i)=>`
+    <div class="search-item" data-i="${i}">
+      <div class="search-term">${r.term}</div>
+      <div class="search-path">${r.path}</div>
+      <span class="search-db ${r.hasDB?'has':'none'}">${r.hasDB?'問題あり':'準備中'}</span>
+    </div>
+  `).join('');
+  area.querySelectorAll('.search-item').forEach(el=>{
+    el.addEventListener('click',()=>navigateToTerm(results[+el.dataset.i]));
+  });
+}
+
+function navigateToTerm(item){
+  closeSearch();
+  // ホーム→マップ遷移してからジャンプ
+  const alreadyOnMap = document.getElementById('mapview').style.display==='flex';
+  if(alreadyOnMap && currentChapter && currentChapter.id===item.chapter.id){
+    jumpToNode(item.term);
+    if(item.hasDB) setTimeout(()=>openSheet(item.term), 350);
+  } else {
+    openMap(item.chapter);
+    setTimeout(()=>{
+      jumpToNode(item.term);
+      if(item.hasDB) setTimeout(()=>openSheet(item.term), 350);
+    }, 280);
+  }
+}
+
+function jumpToNode(term){
+  const els = document.querySelectorAll(`[data-term="${CSS.escape(term)}"]`);
+  let nx=null, ny=null;
+  els.forEach(el=>{
+    if(nx!==null) return;
+    if(el.tagName==='rect'){
+      nx = parseFloat(el.getAttribute('x')) + parseFloat(el.getAttribute('width'))/2;
+      ny = parseFloat(el.getAttribute('y')) + parseFloat(el.getAttribute('height'))/2;
+    }
+  });
+  if(nx===null) return;
+
+  // 現在のズームを維持しつつ、少なくとも1.5倍に
+  vz = Math.max(vz, 1.5);
+  vx = svgW/2 - nx*vz;
+  vy = svgH/2 - ny*vz;
+  applyTransform();
+
+  // 白くフラッシュしてハイライト
+  setTimeout(()=>{
+    els.forEach(el=>{
+      if(el.tagName!=='rect') return;
+      const origStroke = el.getAttribute('stroke');
+      const origSW = el.getAttribute('stroke-width');
+      el.setAttribute('stroke','#ffffff');
+      el.setAttribute('stroke-width','3');
+      setTimeout(()=>{
+        el.setAttribute('stroke', origStroke);
+        el.setAttribute('stroke-width', origSW);
+      }, 1600);
+    });
+  }, 60);
+}
+
+function openSearch(){
+  document.getElementById('search-overlay').style.display='flex';
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-overlay').style.display='none';
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='';
+}
+
+document.getElementById('search-open-btn').addEventListener('click', openSearch);
+document.getElementById('search-open-btn-map').addEventListener('click', openSearch);
+document.getElementById('search-cancel').addEventListener('click', closeSearch);
+document.getElementById('search-input').addEventListener('input', e=>{
+  renderSearchResults(doSearch(e.target.value), e.target.value);
 });
 
 // ── Init ──
