@@ -2535,19 +2535,21 @@ function renderMindMap(chapter,autoOpen){
   document.getElementById('map-title').textContent=chapter.title;
   const svg=document.getElementById('mindmap');
   svg.innerHTML='';
-  svgW=document.getElementById('map-container').clientWidth;
-  svgH=document.getElementById('map-container').clientHeight;
+  const _mc=document.getElementById('map-container');
+  const _rc=_mc.getBoundingClientRect();
+  svgW=_rc.width  || _mc.clientWidth  || window.innerWidth;
+  svgH=_rc.height || _mc.clientHeight || window.innerHeight*0.88;
 
   // auto-fit scale so full map is visible
   const extent=R3+90; // outermost radius + node half-width
   const extentY=R3*ASPECT+60;
   vz=Math.min(svgW/(extent*2), svgH/(extentY*2))*0.92;
   vx=svgW/2; vy=svgH/2;
-  applyTransform();
 
   const g=document.createElementNS('http://www.w3.org/2000/svg','g');
   g.id='map-g';
   svg.appendChild(g);
+  applyTransform(); // map-g追加後に呼ぶ
 
   if(!chapter.branches||chapter.branches.length===0){
     const txt=document.createElementNS('http://www.w3.org/2000/svg','text');
@@ -2961,9 +2963,8 @@ function renderHome(){
 function openMap(chapter){
   document.getElementById('home').style.display='none';
   document.getElementById('mapview').style.display='flex';
-  // Chapter 1: auto-demo with チューリングテスト on first open
-  const demo = chapter.id===1 ? 'チューリングテスト' : null;
-  setTimeout(()=>renderMindMap(chapter,demo),50);
+  // 2フレーム待ってflex layoutが確定してから描画
+  requestAnimationFrame(()=>requestAnimationFrame(()=>renderMindMap(chapter,null)));
 }
 
 document.getElementById('btn-back').addEventListener('click',()=>{
