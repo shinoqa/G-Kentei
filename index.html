@@ -6004,7 +6004,10 @@ function renderMindMap(chapter,autoOpen){
 
       const [lx,ly]=rxy(l1Angle,R1);
       drawCurve(g,0,0,lx,ly,color,2.5,0.8);
-      drawL1(g,lx,ly,branch.l1,color);
+      // L1完了判定：配下の全TERM_DB登録語が学習済みか
+      const l1DbTerms=branch.children.flatMap(c=>c.terms.filter(t=>!!TERM_DB[t]));
+      const l1Done=l1DbTerms.length>0&&l1DbTerms.every(t=>isLearned(t));
+      drawL1(g,lx,ly,branch.l1,color,l1Done);
 
       // L2: proportional within branchSpan
       const totalChildTerms=branch.children.reduce((s,c)=>s+Math.max(1,c.terms.length),0)||1;
@@ -6018,7 +6021,10 @@ function renderMindMap(chapter,autoOpen){
 
         const [cx2,cy2]=rxy(l2Angle,R2);
         drawCurve(g,lx,ly,cx2,cy2,color,1.8,0.6);
-        drawL2(g,cx2,cy2,child.l2,color);
+        // L2完了判定：配下の全TERM_DB登録語が学習済みか
+        const l2DbTerms=child.terms.filter(t=>!!TERM_DB[t]);
+        const l2Done=l2DbTerms.length>0&&l2DbTerms.every(t=>isLearned(t));
+        drawL2(g,cx2,cy2,child.l2,color,l2Done);
 
         // L3: evenly spread within 80% of childSpan
         const nt=child.terms.length;
@@ -6060,7 +6066,7 @@ function drawCenter(g,chapter){
   if(lines[1]) addText(g,0,16,(lines[1]+'）').replace('））','）'),'#8892a4',7,400,'middle');
 }
 
-function drawL1(g,x,y,label,color){
+function drawL1(g,x,y,label,color,allLearned){
   const fs=8.5,fw=700;
   const lines=wrapText(label,7);
   const lh=fs+2.5;
@@ -6069,15 +6075,19 @@ function drawL1(g,x,y,label,color){
   const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');
   rect.setAttribute('x',x-bw/2);rect.setAttribute('y',y-bh/2);
   rect.setAttribute('width',bw);rect.setAttribute('height',bh);
-  rect.setAttribute('rx',5);rect.setAttribute('fill',color);rect.setAttribute('opacity','0.95');
+  rect.setAttribute('rx',5);
+  rect.setAttribute('fill', allLearned?'#1a4a30':color);
+  rect.setAttribute('stroke', allLearned?'#27ae60':color);
+  rect.setAttribute('stroke-width', allLearned?'2':'0');
+  rect.setAttribute('opacity','0.95');
   g.appendChild(rect);
   lines.forEach((ln,i)=>{
     const ty=y-(lines.length-1)*lh/2+i*lh+1;
-    addText(g,x,ty,ln,'#fff',fs,fw,'middle');
+    addText(g,x,ty,ln,allLearned?'#5dde8a':'#fff',fs,fw,'middle');
   });
 }
 
-function drawL2(g,x,y,label,color){
+function drawL2(g,x,y,label,color,allLearned){
   const fs=7,fw=600;
   const lines=wrapText(label,8);
   const lh=fs+2;
@@ -6087,15 +6097,16 @@ function drawL2(g,x,y,label,color){
   rect.setAttribute('x',x-bw/2);rect.setAttribute('y',y-bh/2);
   rect.setAttribute('width',bw);rect.setAttribute('height',bh);
   rect.setAttribute('rx',4);
-  rect.setAttribute('fill','rgba(15,25,40,0.92)');
-  rect.setAttribute('stroke',color);rect.setAttribute('stroke-width','1.5');
+  rect.setAttribute('fill', allLearned?'#1a4a30':'rgba(15,25,40,0.92)');
+  rect.setAttribute('stroke', allLearned?'#27ae60':color);
+  rect.setAttribute('stroke-width', allLearned?'2':'1.5');
   rect.setAttribute('class','term-node');
   rect.setAttribute('data-term',label);
   rect.style.cursor='pointer';
   g.appendChild(rect);
   lines.forEach((ln,i)=>{
     const ty=y-(lines.length-1)*lh/2+i*lh+1;
-    addText(g,x,ty,ln,'#c8d8f8',fs,fw,'middle');
+    addText(g,x,ty,ln,allLearned?'#5dde8a':'#c8d8f8',fs,fw,'middle');
   });
 }
 
