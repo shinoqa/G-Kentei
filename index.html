@@ -104,6 +104,69 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#2c3f6a;border-radius:2px}
+
+/* ── Tab bar ── */
+:root{--tl-c1:#4CAF50;--tl-c2:#9E9E9E;--tl-c3:#2196F3;--tl-c4:#607D8B;--tl-c5:#FF5722;--tl-c6:#9C27B0}
+#tab-bar{position:fixed;bottom:0;left:0;right:0;height:calc(56px + env(safe-area-inset-bottom));background:#1a2744;border-top:1.5px solid #243156;display:flex;z-index:50;padding-bottom:env(safe-area-inset-bottom)}
+.tab-btn{flex:1;background:none;border:none;color:#5a6a88;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:.62rem;transition:color .15s;-webkit-tap-highlight-color:transparent;font-family:-apple-system,'Hiragino Sans','Yu Gothic',sans-serif}
+.tab-btn.active{color:#7eb3ff}
+.tab-icon{font-size:1.3rem;line-height:1}
+#chapter-list{padding-bottom:80px!important}
+
+/* ── Timeline view ── */
+#timeline-view{display:none;flex-direction:column;height:100dvh;overflow:hidden;background:#0f1923;color:#e8eaf0}
+#tl-hdr{display:flex;align-items:center;gap:8px;padding:14px 20px 12px;background:#1a2744;border-bottom:1px solid #243156;flex-shrink:0}
+#tl-hdr h2{font-size:1rem;font-weight:700;color:#c8d8f8}
+#tl-hdr span{font-size:.75rem;color:#6b7a99}
+#tl-filters{display:flex;gap:6px;padding:10px 14px;overflow-x:auto;background:#0f1923;border-bottom:1px solid #141c2e;flex-shrink:0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+#tl-filters::-webkit-scrollbar{display:none}
+#tl-scroll{flex:1;overflow-y:auto}
+.filter-btn{white-space:nowrap;padding:5px 11px;border-radius:20px;border:1px solid #243156;background:transparent;color:#6b7a99;cursor:pointer;font-size:.7rem;transition:all .15s;-webkit-tap-highlight-color:transparent;font-family:-apple-system,'Hiragino Sans','Yu Gothic',sans-serif}
+.filter-btn.active{color:#fff;border-color:transparent}
+.filter-btn[data-era="all"].active{background:#4a5568}
+.filter-btn[data-era="era1"].active{background:var(--tl-c1)}
+.filter-btn[data-era="era-w1"].active{background:var(--tl-c2);color:#111}
+.filter-btn[data-era="era2"].active{background:var(--tl-c3)}
+.filter-btn[data-era="era-w2"].active{background:var(--tl-c4)}
+.filter-btn[data-era="era3"].active{background:var(--tl-c5)}
+.filter-btn[data-era="era4"].active{background:var(--tl-c6)}
+.filter-btn[data-era="key"].active{background:#e6c030;color:#000}
+.tl-body{padding:16px 14px 80px;position:relative}
+.tl-body::before{content:'';position:absolute;left:54px;top:16px;bottom:0;width:2px;background:#243156}
+.era-label{display:flex;align-items:center;gap:8px;margin:22px 0 6px;position:relative;z-index:1}
+.era-label .badge{font-size:.65rem;font-weight:700;padding:3px 9px;border-radius:12px;white-space:nowrap}
+.era-label .line{flex:1;height:1px;background:#243156}
+.era-label .era-sub{font-size:.63rem;color:#5a6a88;white-space:nowrap}
+.event{display:flex;gap:10px;margin-bottom:8px}
+.event.hidden{display:none}
+.year-col{width:40px;text-align:right;flex-shrink:0;padding-top:10px}
+.year-col .year{font-size:.7rem;font-weight:700;color:#6b7a99;line-height:1.3}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:12px;position:relative;z-index:1;border:2px solid #0f1923}
+.event[data-era="era1"] .dot{background:var(--tl-c1)}
+.event[data-era="era-w1"] .dot{background:var(--tl-c2)}
+.event[data-era="era2"] .dot{background:var(--tl-c3)}
+.event[data-era="era-w2"] .dot{background:var(--tl-c4)}
+.event[data-era="era3"] .dot{background:var(--tl-c5)}
+.event[data-era="era4"] .dot{background:var(--tl-c6)}
+.tl-card{flex:1;background:#1a2744;border:1px solid #243156;border-radius:10px;padding:10px 12px;cursor:pointer;transition:border-color .15s;-webkit-tap-highlight-color:transparent}
+.tl-card:active{background:#1e3050}
+.tl-card.expanded{border-color:#3a7bfd55}
+.card-header{display:flex;align-items:flex-start;gap:6px}
+.card-title{font-size:.82rem;font-weight:700;flex:1;line-height:1.4;color:#c8d8f8}
+.key-star{color:#e6c030;font-size:.82rem;flex-shrink:0}
+.card-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
+.tag{font-size:.6rem;padding:1px 6px;border-radius:10px;border:1px solid}
+.tag-person{border-color:#58a6ff55;color:#58a6ff;background:#58a6ff11}
+.tag-org{border-color:#3fb95055;color:#3fb950;background:#3fb95011}
+.tag-concept{border-color:#d2992299;color:#d29922;background:#d2992211}
+.tag-paper{border-color:#bc8cff55;color:#bc8cff;background:#bc8cff11}
+.card-detail{display:none;margin-top:8px;padding-top:8px;border-top:1px solid #243156;font-size:.78rem;color:#a0b4cc;line-height:1.7}
+.tl-card.expanded .card-detail{display:block}
+.detail-point{display:flex;gap:6px;margin-bottom:4px}
+.detail-point::before{content:'▸';color:#5a6a88;flex-shrink:0}
+.highlight{background:#d2992218;border:1px solid #d2992244;border-radius:4px;padding:7px 10px;margin-top:7px;font-size:.72rem;color:#d29922;line-height:1.6}
+.highlight::before{content:'★ G検定ポイント｜';font-weight:700}
+.tl-no-result{display:none;text-align:center;color:#5a6a88;padding:40px;font-size:.85rem}
 </style>
 </head>
 <body>
@@ -138,6 +201,548 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
     </div>
   </div>
 </div>
+
+<!-- ── Timeline view ── -->
+<div id="timeline-view">
+  <div id="tl-hdr">
+    <span style="font-size:1.2rem">📅</span>
+    <h2>AI歴史年表</h2>
+    <span>G検定対策</span>
+  </div>
+  <div id="tl-filters">
+    <button class="filter-btn active" data-era="all">すべて</button>
+    <button class="filter-btn" data-era="era1">🟢 第1次ブーム</button>
+    <button class="filter-btn" data-era="era-w1">⚪ 第1次冬</button>
+    <button class="filter-btn" data-era="era2">🔵 第2次ブーム</button>
+    <button class="filter-btn" data-era="era-w2">🔘 第2次冬</button>
+    <button class="filter-btn" data-era="era3">🔴 第3次ブーム</button>
+    <button class="filter-btn" data-era="era4">🟣 生成AI時代</button>
+    <button class="filter-btn" data-era="key">⭐ 頻出のみ</button>
+  </div>
+  <div id="tl-scroll">
+    <div class="tl-body">
+
+      <div class="era-label" data-era="era1">
+        <span class="badge" style="background:var(--tl-c1);color:#fff">第1次AIブーム｜1950〜1969年</span>
+        <span class="line"></span>
+        <span class="era-sub">記号・推論の時代</span>
+      </div>
+      <div class="event" data-era="era1" data-key="true">
+        <div class="year-col"><span class="year">1950</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">チューリングテスト提唱</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">アラン・チューリング</span>
+            <span class="tag tag-paper">Computing Machinery and Intelligence</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">「機械は考えることができるか？」という問いを提示</div>
+            <div class="detail-point">人間の審判者がテキスト会話で「相手が人間か機械か」を判断できなければ、機械は知的とみなす</div>
+            <div class="detail-point">AIの定義・評価の出発点となった概念</div>
+            <div class="highlight">チューリングテストの定義・目的・限界（誰でも通過できれば知的か？）はよく出る</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era1" data-key="true">
+        <div class="year-col"><span class="year">1956</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">ダートマス会議 ─ "人工知能"という言葉の誕生</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ジョン・マッカーシー</span>
+            <span class="tag tag-person">マービン・ミンスキー</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">マッカーシーが "Artificial Intelligence" という用語を命名</div>
+            <div class="detail-point">夏季研究会（ダートマス大学）で開催。AI研究の幕開け</div>
+            <div class="detail-point">参加者：マッカーシー・ミンスキー・シャノン・ニューウェル等</div>
+            <div class="highlight">「AIという言葉を作った人物＝マッカーシー」「1956年＝AI研究の始まり」は最頻出</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era1">
+        <div class="year-col"><span class="year">1957</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">パーセプトロン（単純型）</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">フランク・ローゼンブラット</span>
+            <span class="tag tag-concept">ニューラルネットワーク先駆け</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">1つのニューロンの動作を模倣した最初のモデル</div>
+            <div class="detail-point">線形分離可能な問題のみ解ける（XOR問題は解けない）</div>
+            <div class="detail-point">後のニューラルネットワーク研究の原点</div>
+            <div class="highlight">「XORが解けない→ミンスキーに批判された→第1次冬へ」の流れで出題される</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era1">
+        <div class="year-col"><span class="year">1958</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">LISP 開発</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ジョン・マッカーシー</span>
+            <span class="tag tag-concept">AI向けプログラミング言語</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">AI研究専用の関数型プログラミング言語</div>
+            <div class="detail-point">記号処理・リスト操作に強く、エキスパートシステム開発に使われた</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era1">
+        <div class="year-col"><span class="year">1965</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">ELIZA ─ 最初の対話プログラム</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ジョセフ・ワイゼンバウム（MIT）</span>
+            <span class="tag tag-concept">チャットボット原型</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">パターンマッチングで会話を行うプログラム</div>
+            <div class="detail-point">心理療法士の会話を模倣（ROGERSスクリプト）</div>
+            <div class="detail-point">「理解なき模倣」の典型例。チューリングテストとの対比で語られる</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-label" data-era="era-w1">
+        <span class="badge" style="background:var(--tl-c2);color:#fff">第1次AIの冬｜1969〜1980年</span>
+        <span class="line"></span>
+        <span class="era-sub">パーセプトロン批判・資金停止</span>
+      </div>
+      <div class="event" data-era="era-w1" data-key="true">
+        <div class="year-col"><span class="year">1969</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">「パーセプトロンズ」出版 ─ 第1次冬の引き金</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">マービン・ミンスキー</span>
+            <span class="tag tag-person">シーモア・パパート</span>
+            <span class="tag tag-paper">Perceptrons（書籍）</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">単純パーセプトロンはXOR問題（非線形問題）を解けないことを数学的に証明</div>
+            <div class="detail-point">ニューラルネットワーク研究が世界中で冷え込み、資金・注目が激減</div>
+            <div class="highlight">「XORが解けない・ミンスキーとパパートが証明・第1次冬へ」はセットで暗記</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era-w1">
+        <div class="year-col"><span class="year">1973</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">ライトヒルレポート ─ 英国のAI批判報告書</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ジェームズ・ライトヒル</span>
+            <span class="tag tag-org">英国科学研究会議</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">英国政府がAI研究の成果を評価し、「期待外れ」と結論</div>
+            <div class="detail-point">英国のAI研究予算が大幅に削減される</div>
+            <div class="detail-point">米国でも同時期にDARPA等の研究資金が縮小</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-label" data-era="era2">
+        <span class="badge" style="background:var(--tl-c3);color:#fff">第2次AIブーム｜1980〜1995年</span>
+        <span class="line"></span>
+        <span class="era-sub">エキスパートシステム・バックプロパゲーション</span>
+      </div>
+      <div class="event" data-era="era2" data-key="true">
+        <div class="year-col"><span class="year">1980<br><span style="font-size:.6rem">年代</span></span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">エキスパートシステムの全盛期</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-concept">知識表現</span>
+            <span class="tag tag-concept">推論エンジン</span>
+            <span class="tag tag-concept">知識ベース</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">専門家の知識を「IF〜THEN〜」ルールとして記述し、推論するシステム</div>
+            <div class="detail-point">代表例：MYCIN（医療診断）・XCON（コンピュータ構成設計）</div>
+            <div class="detail-point">限界：知識の取得・更新が困難（知識獲得のボトルネック）</div>
+            <div class="highlight">「エキスパートシステム＝IF-THENルール＋推論エンジン＋知識ベース」の3要素で出る</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era2">
+        <div class="year-col"><span class="year">1982</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">ホップフィールドネットワーク</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ジョン・ホップフィールド</span>
+            <span class="tag tag-concept">回帰型ネットワーク</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">連想記憶を実現する再帰型ニューラルネットワーク</div>
+            <div class="detail-point">エネルギー関数を最小化する仕組み（ボルツマンマシンの前身）</div>
+            <div class="detail-point">ニューラルネット研究再燃のきっかけの1つ</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era2" data-key="true">
+        <div class="year-col"><span class="year">1986</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">誤差逆伝播法（バックプロパゲーション）</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ルメルハート</span>
+            <span class="tag tag-person">ヒントン</span>
+            <span class="tag tag-person">ウィリアムズ</span>
+            <span class="tag tag-paper">Learning representations by back-propagating errors</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">多層ニューラルネットワークを効率的に学習させるアルゴリズムを確立</div>
+            <div class="detail-point">出力誤差を逆方向に伝播させ、各層の重みを勾配降下法で更新</div>
+            <div class="detail-point">XOR問題も多層ネットで解けるようになった</div>
+            <div class="detail-point">ただし「勾配消失問題」が深い層で発生（後の深層学習課題）</div>
+            <div class="highlight">発案者3名（ルメルハート・ヒントン・ウィリアムズ）と1986年は頻出。誤差逆伝播＝ディープラーニングの基礎</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era2">
+        <div class="year-col"><span class="year">1989</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">LeNet の原型 ─ 畳み込みニューラルネット</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ヤン・ルカン（LeCun）</span>
+            <span class="tag tag-org">AT&amp;Tベル研究所</span>
+            <span class="tag tag-concept">CNN</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">手書き数字認識に特化した畳み込みネットワークの先駆け</div>
+            <div class="detail-point">1998年に LeNet-5 として完成。郵便番号・小切手読取に実用化</div>
+            <div class="detail-point">畳み込み層・プーリング層・全結合層という現代CNNの基本構造を確立</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-label" data-era="era-w2">
+        <span class="badge" style="background:var(--tl-c4);color:#fff">第2次AIの冬｜1995〜2006年</span>
+        <span class="line"></span>
+        <span class="era-sub">エキスパートシステム失速・SVM台頭</span>
+      </div>
+      <div class="event" data-era="era-w2">
+        <div class="year-col"><span class="year">1995<br><span style="font-size:.6rem">年代</span></span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">サポートベクターマシン（SVM）台頭</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">コルテス＆ヴァプニク</span>
+            <span class="tag tag-concept">マージン最大化</span>
+            <span class="tag tag-concept">カーネル法</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">ニューラルネットより性能が出ることが多く、主流の分類器となった</div>
+            <div class="detail-point">カーネルトリックで非線形分離も可能</div>
+            <div class="detail-point">ニューラルネット研究が再び下火に（第2次冬の一因）</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era-w2" data-key="true">
+        <div class="year-col"><span class="year">1997</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">Deep Blue がカスパロフに勝利</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">IBM</span>
+            <span class="tag tag-person">ガルリ・カスパロフ（チェス世界王者）</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">IBMのチェス専用コンピュータが世界王者に勝利</div>
+            <div class="detail-point">探索木（ゲーム木）＋評価関数によるアプローチ（機械学習ではない）</div>
+            <div class="detail-point">AIへの社会的注目が高まる象徴的事件</div>
+            <div class="highlight">「Deep Blue＝IBM＝チェス＝1997年」はよく出る。学習ではなく探索ベースだった点も重要</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era-w2" data-key="true">
+        <div class="year-col"><span class="year">1997</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">LSTM（長短期記憶）</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ホッホライター</span>
+            <span class="tag tag-person">シュミットフーバー</span>
+            <span class="tag tag-concept">RNN・時系列</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">RNNの勾配消失問題を解決するゲート機構を導入</div>
+            <div class="detail-point">入力ゲート・忘却ゲート・出力ゲートで長期依存関係を学習</div>
+            <div class="detail-point">自然言語処理・音声認識で2010年代まで主力モデルだった</div>
+            <div class="highlight">LSTM＝ゲート機構で勾配消失を解決。3つのゲート名は覚えておくと安心</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era-w2">
+        <div class="year-col"><span class="year">1998</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">LeNet-5 完成</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ヤン・ルカン</span>
+            <span class="tag tag-concept">CNN完成形</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">畳み込み層×2・プーリング層×2・全結合層で構成</div>
+            <div class="detail-point">米国の銀行小切手読取システムに導入（商用実績）</div>
+            <div class="detail-point">2012年のAlexNetへの直接的な祖先</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-label" data-era="era3">
+        <span class="badge" style="background:var(--tl-c5);color:#fff">第3次AIブーム｜2006〜2022年</span>
+        <span class="line"></span>
+        <span class="era-sub">深層学習・ビッグデータ・GPU革命</span>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2006</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">深層信念ネットワーク（DBN）─ 深層学習の夜明け</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ジェフリー・ヒントン</span>
+            <span class="tag tag-concept">事前学習（Pretraining）</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">層ごとに順番に学習する「事前学習＋ファインチューニング」手法を提案</div>
+            <div class="detail-point">深いネットワークの学習を初めて安定させた</div>
+            <div class="detail-point">第3次AIブーム（深層学習ブーム）の起点</div>
+            <div class="highlight">ヒントンが2006年に深層学習を復活させた経緯は必須。「Reducing the Dimensionality of Data with Neural Networks」</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2011</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">IBM Watson が Jeopardy! で優勝</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">IBM</span>
+            <span class="tag tag-concept">自然言語処理・問答AI</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">米国クイズ番組で人間のチャンピオン2人に勝利</div>
+            <div class="detail-point">自然言語理解＋大量テキスト検索＋信頼度スコアリングで実現</div>
+            <div class="highlight">「Jeopardy!＝IBM Watson＝2011年」は出やすい。Deep Blueと混同しないよう注意</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2012</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">AlexNet ─ 深層学習ブレークスルー</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">アレックス・クリジェフスキー</span>
+            <span class="tag tag-person">ジェフリー・ヒントン</span>
+            <span class="tag tag-org">ILSVRC（ImageNet大規模視覚認識競争）</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">ImageNet 2012コンペで2位に大差をつけて優勝（エラー率 15.3% vs 2位 26.2%）</div>
+            <div class="detail-point">GPU並列計算・ReLU活性化関数・Dropoutを組み合わせた8層CNN</div>
+            <div class="detail-point">ディープラーニングが「使える技術」として世界に証明された瞬間</div>
+            <div class="highlight">「AlexNet＝2012年＝ImageNet＝ヒントンのチーム」は最頻出。ReLU・Dropout・GPUの3点セットも重要</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3">
+        <div class="year-col"><span class="year">2013</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">Word2Vec</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ミコロフ（Mikolov）</span>
+            <span class="tag tag-org">Google</span>
+            <span class="tag tag-concept">分散表現・単語埋め込み</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">単語を低次元ベクトル空間に埋め込む技術（分散表現）</div>
+            <div class="detail-point">「king − man + woman ≈ queen」という意味的演算が可能</div>
+            <div class="detail-point">2手法：CBOW（周辺語→中心語）と Skip-gram（中心語→周辺語）</div>
+            <div class="highlight">Word2Vec＝単語の分散表現。CBOW / Skip-gram の違いと「意味的演算」は頻出</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2014</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">GAN（敵対的生成ネットワーク）</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">イアン・グッドフェロー</span>
+            <span class="tag tag-concept">生成モデル</span>
+            <span class="tag tag-concept">Generator / Discriminator</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">生成器（Generator）と識別器（Discriminator）を競わせて学習するフレームワーク</div>
+            <div class="detail-point">生成器：本物らしい偽データを生成 ／ 識別器：本物か偽物かを見分ける</div>
+            <div class="detail-point">画像生成・データ拡張・ドメイン変換（CycleGAN等）に広く応用</div>
+            <div class="highlight">GAN＝グッドフェロー・2014年。Generator / Discriminatorの役割と学習の仕組みは必須</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3">
+        <div class="year-col"><span class="year">2015</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">ResNet（残差ネットワーク）・Batch Normalization</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">Microsoft Research</span>
+            <span class="tag tag-concept">残差接続（Skip Connection）</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">ResNet：152層の超深層ネットワークを実現。スキップ接続で勾配消失を克服</div>
+            <div class="detail-point">Batch Normalization（2015）：各ミニバッチで正規化。学習を安定・高速化</div>
+            <div class="detail-point">ImageNet 2015でエラー率 3.57%（人間水準以下）を達成</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2016</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">AlphaGo が李世乭（イ・セドル）に勝利</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">DeepMind（Google子会社）</span>
+            <span class="tag tag-concept">強化学習・モンテカルロ木探索</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">囲碁世界トッププロに4勝1敗で勝利（2016年3月）</div>
+            <div class="detail-point">技術：CNN（盤面評価）＋強化学習（自己対局）＋モンテカルロ木探索（MCTS）</div>
+            <div class="detail-point">2017年 AlphaGo Zero：人間の棋譜不要で自己学習のみで超強化</div>
+            <div class="highlight">AlphaGo＝DeepMind＝2016年。強化学習+MCTSの組み合わせと「AlphaGo Zero（自己対局のみ）」の違いも出る</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2017</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">Transformer ─ "Attention is All You Need"</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">Google Brain</span>
+            <span class="tag tag-paper">Attention is All You Need（Vaswani et al.）</span>
+            <span class="tag tag-concept">自己注意機構（Self-Attention）</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">RNN・LSTMを使わずに「注意機構（Attention）」のみで系列データを処理</div>
+            <div class="detail-point">並列計算が可能→大規模学習に適している</div>
+            <div class="detail-point">Encoder-Decoderアーキテクチャ＋Multi-Head Attention＋位置エンコーディング</div>
+            <div class="detail-point">BERT・GPT・LLM全般の基盤アーキテクチャ</div>
+            <div class="highlight">Transformer＝2017年・Google・Attention is All You Need。現代LLMの根幹。Self-Attentionの仕組みは必須</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2018</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">BERT（Google）・GPT-1（OpenAI）</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">Google</span>
+            <span class="tag tag-org">OpenAI</span>
+            <span class="tag tag-concept">事前学習＋ファインチューニング</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">BERT：Transformerのエンコーダ部分を使った双方向言語モデル。マスク学習（Masked LM）</div>
+            <div class="detail-point">GPT-1：Transformerのデコーダ部分を使った自己回帰型言語モデル</div>
+            <div class="detail-point">どちらも「大量テキストで事前学習 → 下流タスクにファインチューニング」のパラダイムを確立</div>
+            <div class="highlight">BERT＝双方向・エンコーダ・Masked LM｜GPT＝一方向（左→右）・デコーダ・自己回帰型。この対比は超頻出</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3">
+        <div class="year-col"><span class="year">2020</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">GPT-3（1750億パラメータ）</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">OpenAI</span>
+            <span class="tag tag-concept">Few-shot / Zero-shot 学習</span>
+            <span class="tag tag-concept">スケーリング則</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">パラメータ数1750億の超大規模言語モデル</div>
+            <div class="detail-point">プロンプトに例を数件（Few-shot）示すだけで多様なタスクをこなす</div>
+            <div class="detail-point">スケーリング則：データ・計算量・パラメータを増やすと性能が予測可能に向上</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-label" data-era="era4">
+        <span class="badge" style="background:var(--tl-c6);color:#fff">生成AI時代｜2022年〜</span>
+        <span class="line"></span>
+        <span class="era-sub">LLM・マルチモーダル・AI法整備</span>
+      </div>
+      <div class="event" data-era="era4" data-key="true">
+        <div class="year-col"><span class="year">2022</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">ChatGPT 公開・Stable Diffusion</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">OpenAI</span>
+            <span class="tag tag-concept">RLHF（人間フィードバックからの強化学習）</span>
+            <span class="tag tag-concept">拡散モデル</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">ChatGPT（2022年11月）：GPT-3.5ベース。RLHF（人間フィードバック強化学習）で対話に特化</div>
+            <div class="detail-point">公開5日で100万ユーザー到達。史上最速の普及速度</div>
+            <div class="detail-point">Stable Diffusion：拡散モデルによるオープンソース画像生成</div>
+            <div class="highlight">RLHF の仕組み（SFT→報酬モデル→PPO強化学習）はG検定頻出。生成AIの倫理・ハルシネーションも</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era4">
+        <div class="year-col"><span class="year">2023</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">GPT-4・マルチモーダルAI・LLM競争</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">OpenAI / Google / Meta / Anthropic</span>
+            <span class="tag tag-concept">マルチモーダル</span>
+            <span class="tag tag-concept">RAG / エージェント</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">GPT-4：テキスト＋画像入力のマルチモーダルモデル</div>
+            <div class="detail-point">Llama 2（Meta）・Gemini（Google）・Claude（Anthropic）が相次いで公開</div>
+            <div class="detail-point">RAG（検索拡張生成）・LoRA・インストラクションチューニングが実用化</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era4" data-key="true">
+        <div class="year-col"><span class="year">2024</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">AI規制・法整備の本格化</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-concept">EU AI Act（2024年施行）</span>
+            <span class="tag tag-concept">NIST AI RMF</span>
+            <span class="tag tag-concept">日本のAI戦略</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">EU AI Act：リスクベースのAI規制。高リスクAIへの厳格な要件（2024年施行）</div>
+            <div class="detail-point">NIST AI RMF：AIリスク管理のフレームワーク（Govern/Map/Measure/Manage）</div>
+            <div class="detail-point">日本：AI事業者ガイドライン（2024年）・AI安全研究所（AISI）設立</div>
+            <div class="highlight">EU AI Act のリスク分類（禁止/高リスク/限定リスク/最小リスク）とNIST AI RMFの4機能はG検定第8章の最頻出</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-no-result" id="tl-no-result">該当するイベントがありません</div>
+    </div><!-- /tl-body -->
+  </div><!-- /tl-scroll -->
+</div><!-- /timeline-view -->
 
 <!-- ── Syllabus overlay ── -->
 <div id="syllabus-overlay">
@@ -6619,8 +7224,64 @@ document.getElementById('search-input').addEventListener('input', e=>{
   renderSearchResults(doSearch(e.target.value), e.target.value);
 });
 
+// ── Tab switching ──
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  const tlView = document.getElementById('timeline-view');
+  const homeEl = document.getElementById('home');
+  const mapEl  = document.getElementById('mapview');
+  if (tab === 'timeline') {
+    homeEl.style.display = 'none';
+    mapEl.style.display  = 'none';
+    tlView.style.display = 'flex';
+  } else {
+    tlView.style.display = 'none';
+    homeEl.style.display = 'flex';
+    mapEl.style.display  = 'none';
+  }
+}
+
+// ── Timeline card toggle ──
+function tlToggleCard(card) {
+  card.classList.toggle('expanded');
+}
+
+// ── Timeline filter ──
+(function(){
+  const btns   = document.querySelectorAll('#tl-filters .filter-btn');
+  const evts   = document.querySelectorAll('#tl-scroll .event');
+  const labels = document.querySelectorAll('#tl-scroll .era-label');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const era = btn.dataset.era;
+      evts.forEach(e => {
+        if (era === 'all') e.classList.remove('hidden');
+        else if (era === 'key') e.classList.toggle('hidden', !e.dataset.key);
+        else e.classList.toggle('hidden', e.dataset.era !== era);
+      });
+      labels.forEach(l => {
+        l.style.display = (era === 'all' || era === 'key' || l.dataset.era === era) ? '' : 'none';
+      });
+      const visible = [...evts].filter(e => !e.classList.contains('hidden')).length;
+      document.getElementById('tl-no-result').style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+})();
+
 // ── Init ──
 renderHome();
 </script>
+
+<!-- ── Tab bar ── -->
+<div id="tab-bar">
+  <button class="tab-btn active" data-tab="study" onclick="switchTab('study')">
+    <span class="tab-icon">📚</span>学習
+  </button>
+  <button class="tab-btn" data-tab="timeline" onclick="switchTab('timeline')">
+    <span class="tab-icon">📅</span>年表
+  </button>
+</div>
 </body>
 </html>
