@@ -348,11 +348,49 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
           </div>
         </div>
       </div>
+      <div class="event" data-era="era-w1" data-key="true">
+        <div class="year-col"><span class="year">1979</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">ネオコグニトロン ─ CNNの直接の原型</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">福島邦彦（NHK技術研究所）</span>
+            <span class="tag tag-concept">S細胞・C細胞</span>
+            <span class="tag tag-concept">CNN前身・視覚認識モデル</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">ヒューベル＆ウィーゼルの視覚野研究（1959）を参考に設計した階層型視覚認識モデル</div>
+            <div class="detail-point">S細胞（Simple cell）：特定方向・位置の特徴に反応 → 畳み込み層の原型</div>
+            <div class="detail-point">C細胞（Complex cell）：位置がずれても同じ特徴に反応（位置不変性） → プーリング層の原型</div>
+            <div class="detail-point">「S細胞→C細胞→S細胞→C細胞…」の繰り返し構造がそのままCNNの基本設計に継承</div>
+            <div class="highlight">「CNN の起源＝ネオコグニトロン＝福島邦彦＝1979年＝日本人」は頻出セット。S細胞→畳み込み層、C細胞→プーリング層の対応も問われる</div>
+          </div>
+        </div>
+      </div>
 
       <div class="era-label" data-era="era2">
         <span class="badge" style="background:var(--tl-c3);color:#fff">第2次AIブーム｜1980〜1995年</span>
         <span class="line"></span>
         <span class="era-sub">エキスパートシステム・バックプロパゲーション</span>
+      </div>
+      <div class="event" data-era="era2" data-key="true">
+        <div class="year-col"><span class="year">1980</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">中国語の部屋</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">ジョン・サール（カリフォルニア大学バークレー校）</span>
+            <span class="tag tag-concept">哲学的AI批判</span>
+            <span class="tag tag-concept">強いAI vs 弱いAI</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">「構文（記号操作）を処理するだけでは意味（意識）は生まれない」という思考実験</div>
+            <div class="detail-point">中国語を知らない人が翻訳規則書通りに中国語を返答しても、理解しているとは言えない</div>
+            <div class="detail-point">チューリングテストへの哲学的反論：外部から合格しても内部に理解はない</div>
+            <div class="detail-point">「強いAI（意識・理解のあるAI）」vs「弱いAI（タスクをこなすだけ）」の区別に直結</div>
+            <div class="highlight">チューリングテストと並んで第1章必出の哲学的問題。ELIZAとの対比（理解なき模倣）としても出る。「サール」「部屋」「弱いAI」の3点をセットで</div>
+          </div>
+        </div>
       </div>
       <div class="event" data-era="era2" data-key="true">
         <div class="year-col"><span class="year">1980<br><span style="font-size:.6rem">年代</span></span></div>
@@ -368,7 +406,12 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
             <div class="detail-point">専門家の知識を「IF〜THEN〜」ルールとして記述し、推論するシステム</div>
             <div class="detail-point">代表例：MYCIN（医療診断）・XCON（コンピュータ構成設計）</div>
             <div class="detail-point">限界：知識の取得・更新が困難（知識獲得のボトルネック）</div>
-            <div class="highlight">「エキスパートシステム＝IF-THENルール＋推論エンジン＋知識ベース」の3要素で出る</div>
+            <div class="detail-point" style="margin-top:6px;padding-top:6px;border-top:1px solid #243156"><b>【オントロジーの2分類】</b></div>
+            <div class="detail-point"><b>ライトウェイト・オントロジー</b>（帰納的・ボトムアップ）：AIが大量データから関係性を自動発見。概念の階層関係のみ定義。大規模構築が容易だが精度は低め</div>
+            <div class="detail-point"><b>ヘビーウェイト・オントロジー</b>（演繹的・トップダウン）：人間の専門家が概念・公理・制約を先に定義。精密で体系的だが構築コスト大</div>
+            <div class="detail-point" style="font-size:.7rem;color:#7a8aaa">ヘビーウェイトの限界＝「知識獲得のボトルネック」→ エキスパートシステム失敗の一因。例：WordNet・医療オントロジー</div>
+            <div class="detail-point" style="font-size:.7rem;color:#7a8aaa">※ フリーウェイト・マックスウェイトは存在しない用語（試験の誤答選択肢）</div>
+            <div class="highlight">エキスパートシステム＝IF-THENルール＋推論エンジン＋知識ベース｜ライトウェイト（AI自動・帰納的）vs ヘビーウェイト（人間定義・演繹的）。ヘビーウェイトの限界＝知識獲得のボトルネック</div>
           </div>
         </div>
       </div>
@@ -385,6 +428,25 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
             <div class="detail-point">連想記憶を実現する再帰型ニューラルネットワーク</div>
             <div class="detail-point">エネルギー関数を最小化する仕組み（ボルツマンマシンの前身）</div>
             <div class="detail-point">ニューラルネット研究再燃のきっかけの1つ</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era2" data-key="true">
+        <div class="year-col"><span class="year">1982<br><span style="font-size:.6rem">〜1992</span></span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">第5世代コンピュータプロジェクト（日本）</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">通商産業省（MITI）・ICOT</span>
+            <span class="tag tag-concept">国家AIプロジェクト</span>
+            <span class="tag tag-concept">PROLOG・並列推論</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">日本政府（通産省）が約500億円を投じた10年間の国家AIプロジェクト</div>
+            <div class="detail-point">目標：PROLOG（論理型言語）ベースの並列推論マシンで人間と対話できるコンピュータを実現</div>
+            <div class="detail-point">成果は限定的・目標未達。エキスパートシステムの限界と重なり第2次AIの冬を加速</div>
+            <div class="detail-point">米国・英国も危機感を持ち対抗研究プロジェクトを立ち上げるきっかけに</div>
+            <div class="highlight">「第5世代コンピュータ＝日本・通産省・PROLOG＝失敗→第2次冬の一因」の流れで出る。日本の固有の歴史として毎回出題される</div>
           </div>
         </div>
       </div>
@@ -421,7 +483,29 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
           <div class="card-detail">
             <div class="detail-point">手書き数字認識に特化した畳み込みネットワークの先駆け</div>
             <div class="detail-point">1998年に LeNet-5 として完成。郵便番号・小切手読取に実用化</div>
-            <div class="detail-point">畳み込み層・プーリング層・全結合層という現代CNNの基本構造を確立</div>
+            <div class="detail-point">構成：Convolutions（畳み込み層）＋ Subsampling（プーリング層）＋ 全結合層</div>
+            <div class="detail-point">ネオコグニトロンのS細胞→C細胞の階層構造を実装したモデル</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era2">
+        <div class="year-col"><span class="year">1986<br><span style="font-size:.6rem">/1990</span></span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">ジョーダンネット・エルマンネット ─ RNNの原型</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">Michael Jordan（1986）</span>
+            <span class="tag tag-person">Jeffrey Elman（1990）</span>
+            <span class="tag tag-concept">SRN（単純再帰型ネットワーク）</span>
+            <span class="tag tag-concept">コンテキスト層</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point"><b>ジョーダンネット（1986）</b>：コンテキスト層が<b>出力層</b>の値を保持し次の時点の入力と組み合わせて再利用</div>
+            <div class="detail-point"><b>エルマンネット（1990）</b>：コンテキスト層が<b>隠れ層</b>の出力を保持し次の時点の入力と組み合わせて再利用</div>
+            <div class="detail-point">どちらもSRN（Simple Recurrent Network）と呼ばれる最初期の再帰型ネットワーク</div>
+            <div class="detail-point">限界：長期依存関係の学習が困難（勾配消失問題）→ 1997年 LSTM で解決</div>
+            <div class="detail-point" style="font-size:.7rem;color:#7a8aaa">流れ：ジョーダン（1986）→ エルマン（1990）→ LSTM（1997）→ Transformer（2017）</div>
+            <div class="highlight">エルマン＝隠れ層フィードバック｜ジョーダン＝出力層フィードバック。この区別は頻出。どちらもLSTMの前身（SRN）として位置づけられる</div>
           </div>
         </div>
       </div>
@@ -493,9 +577,11 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
             <span class="tag tag-concept">CNN完成形</span>
           </div>
           <div class="card-detail">
-            <div class="detail-point">畳み込み層×2・プーリング層×2・全結合層で構成</div>
-            <div class="detail-point">米国の銀行小切手読取システムに導入（商用実績）</div>
-            <div class="detail-point">2012年のAlexNetへの直接的な祖先</div>
+            <div class="detail-point">構成：Convolutions（C層）×2 ＋ Subsampling（S層）×2 ＋ 全結合層×3</div>
+            <div class="detail-point">Subsampling＝Average Poolingに近い方式。係数・バイアスに学習可能なパラメータあり</div>
+            <div class="detail-point">現代主流の Max Pooling（最大値を取る）は AlexNet（2012）以降に普及</div>
+            <div class="detail-point">米国の銀行小切手読取システムに導入（商用実績）。2012年AlexNetの直接の祖先</div>
+            <div class="highlight">「LeNet＝Convolutions＋Subsampling＋全結合層」の3構成と、SubsamplingがAverage Pooling系でMax Poolingとは異なる点は頻出</div>
           </div>
         </div>
       </div>
@@ -512,13 +598,35 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
           <div class="card-header"><span class="card-title">深層信念ネットワーク（DBN）─ 深層学習の夜明け</span><span class="key-star">⭐</span></div>
           <div class="card-tags">
             <span class="tag tag-person">ジェフリー・ヒントン</span>
+            <span class="tag tag-concept">RBM（制限付きボルツマンマシン）</span>
             <span class="tag tag-concept">事前学習（Pretraining）</span>
           </div>
           <div class="card-detail">
-            <div class="detail-point">層ごとに順番に学習する「事前学習＋ファインチューニング」手法を提案</div>
-            <div class="detail-point">深いネットワークの学習を初めて安定させた</div>
-            <div class="detail-point">第3次AIブーム（深層学習ブーム）の起点</div>
-            <div class="highlight">ヒントンが2006年に深層学習を復活させた経緯は必須。「Reducing the Dimensionality of Data with Neural Networks」</div>
+            <div class="detail-point">深いネットワークの学習を初めて安定させた。第3次AIブームの起点</div>
+            <div class="detail-point"><b>DBN（深層信念ネットワーク）＝ RBM を積み上げたモデル</b></div>
+            <div class="detail-point"><b>RBM（制限付きボルツマンマシン）</b>：可視層↔隠れ層の2層・同一層内の接続なし（＝"制限"）・確率的に双方向へ学習</div>
+            <div class="detail-point"><b>層別事前学習（Greedy Layer-wise Pre-training）</b>：RBMを1層ずつ順番に学習 → 重みを初期値として深いネットワークを構築 → 勾配消失を回避</div>
+            <div class="detail-point">最後にバックプロパゲーションでファインチューニング</div>
+            <div class="detail-point" style="font-size:.7rem;color:#7a8aaa">論文：「Reducing the Dimensionality of Data with Neural Networks」（Hinton & Salakhutdinov, 2006, Science）</div>
+            <div class="highlight">DBN＝RBMの積み上げ｜RBM＝可視層↔隠れ層・同層内接続なし｜層別事前学習で勾配消失を回避。「ヒントン2006年＝深層学習の復活」は必須</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2009</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">ImageNet データセット公開</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">フェイ・フェイ・リー（スタンフォード大）</span>
+            <span class="tag tag-concept">大規模ラベル付きデータセット</span>
+            <span class="tag tag-org">ILSVRC（大規模視覚認識競争）</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">1400万枚以上の画像に1000クラスのラベルを付与した大規模データセット</div>
+            <div class="detail-point">毎年のILSVRC競争が深層学習アーキテクチャ進化のベンチマークになった</div>
+            <div class="detail-point">「大量ラベル付きデータ＋GPU＋深層学習アルゴリズム」の3点が揃ったことでAlexNet（2012）が実現</div>
+            <div class="highlight">第3次ブームの三要素「ビッグデータ・計算資源・深層学習」の文脈で必出。AlexNetと必ずセットで出題。「フェイ・フェイ・リー」の名前も覚える</div>
           </div>
         </div>
       </div>
@@ -567,10 +675,36 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
             <span class="tag tag-concept">分散表現・単語埋め込み</span>
           </div>
           <div class="card-detail">
-            <div class="detail-point">単語を低次元ベクトル空間に埋め込む技術（分散表現）</div>
+            <div class="detail-point">単語を低次元ベクトル空間に埋め込む技術（分散表現）。Word2Vec以前の課題を解決した</div>
             <div class="detail-point">「king − man + woman ≈ queen」という意味的演算が可能</div>
             <div class="detail-point">2手法：CBOW（周辺語→中心語）と Skip-gram（中心語→周辺語）</div>
-            <div class="highlight">Word2Vec＝単語の分散表現。CBOW / Skip-gram の違いと「意味的演算」は頻出</div>
+            <div class="detail-point" style="margin-top:6px;padding-top:6px;border-top:1px solid #243156"><b>【局所表現 vs 分散表現】</b></div>
+            <div class="detail-point"><b>局所表現</b>（One-hot）：語彙数と同次元・疎なベクトル・意味的類似性を表現できない</div>
+            <div class="detail-point"><b>分散表現</b>（Word Embedding）：100〜300次元・密なベクトル・意味的類似性を距離で表現できる</div>
+            <div class="detail-point" style="font-size:.7rem;color:#7a8aaa">例：「犬」と「猫」は近い／「犬」と「車」は遠い → ベクトル間の距離が意味の近さに対応</div>
+            <div class="highlight">局所表現（One-hot）＝次元爆発・意味なし｜分散表現＝低次元・意味的類似性あり。Word2Vec＝分散表現の実用化。CBOW / Skip-gramの違いもセットで</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2013<br><span style="font-size:.6rem">/2015</span></span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">DQN（Deep Q-Network）─ Atariゲームを習得</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">DeepMind</span>
+            <span class="tag tag-concept">深層強化学習</span>
+            <span class="tag tag-concept">経験再生（Experience Replay）</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">ゲーム画面の映像だけを入力にAtariの49種ゲームを人間超えの実力で習得</div>
+            <div class="detail-point">Q学習（価値ベース強化学習）＋CNN＋経験再生（過去の経験をランダムに再利用）で学習を安定化</div>
+            <div class="detail-point">2013年にarXiv投稿、2015年にNatureで正式発表。AlphaGo（2016）への橋渡しとなった</div>
+            <div class="detail-point">探索戦略：<b>ε-greedy法</b>（確率εでランダム行動＝探索、1-εで最良行動＝活用）を採用</div>
+            <div class="detail-point"><b>NoisyNet</b>：重み自体に乱数を加えることでε-greedy法不要の自然な探索を実現</div>
+            <div class="detail-point"><b>Rainbow（2017, DeepMind）</b>：DQNを含む派生7手法を統合し当時のAtari最高性能を達成</div>
+            <div class="detail-point" style="font-size:.7rem;color:#7a8aaa">Rainbow 7手法：DQN / Double DQN / Prioritized Experience Replay / Dueling Network / Multi-step learning / Distributional RL(C51) / NoisyNet</div>
+            <div class="highlight">ε-greedy法＝探索と活用のバランス｜NoisyNet＝重みへのノイズでε-greedy代替｜Rainbow＝7手法統合・2017年。この3点はセットで出る</div>
           </div>
         </div>
       </div>
@@ -589,6 +723,25 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
             <div class="detail-point">生成器：本物らしい偽データを生成 ／ 識別器：本物か偽物かを見分ける</div>
             <div class="detail-point">画像生成・データ拡張・ドメイン変換（CycleGAN等）に広く応用</div>
             <div class="highlight">GAN＝グッドフェロー・2014年。Generator / Discriminatorの役割と学習の仕組みは必須</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2014<br><span style="font-size:.6rem">/2015</span></span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">Attention機構（バダナウ）─ Transformerの前身</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-person">バダナウ（Bahdanau）</span>
+            <span class="tag tag-concept">注意機構・アライメント</span>
+            <span class="tag tag-concept">Seq2Seq改良</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">翻訳タスクで「出力の各単語が入力のどこに注目すべきか」を学習するアライメントモデル</div>
+            <div class="detail-point">固定長ベクトルへの圧縮という Encoder-Decoder の長文翻訳の限界を解決</div>
+            <div class="detail-point">2014年arXiv投稿・ICLR 2015 発表「Neural Machine Translation by Jointly Learning to Align and Translate」</div>
+            <div class="detail-point">2017年 Transformer では「Attention is All You Need」として発展・RNNを廃止</div>
+            <div class="highlight">Transformerが「なぜRNNを捨てられたか」を理解する必須前史。「どこに注目するかを学習」という概念はG検定頻出</div>
           </div>
         </div>
       </div>
@@ -659,6 +812,25 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
             <div class="detail-point">GPT-1：Transformerのデコーダ部分を使った自己回帰型言語モデル</div>
             <div class="detail-point">どちらも「大量テキストで事前学習 → 下流タスクにファインチューニング」のパラダイムを確立</div>
             <div class="highlight">BERT＝双方向・エンコーダ・Masked LM｜GPT＝一方向（左→右）・デコーダ・自己回帰型。この対比は超頻出</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era3" data-key="true">
+        <div class="year-col"><span class="year">2018</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">GDPR施行（EU一般データ保護規則）</span><span class="key-star">⭐</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">EU</span>
+            <span class="tag tag-concept">個人データ保護</span>
+            <span class="tag tag-concept">忘れられる権利・データポータビリティ</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">EU市民の個人データ保護を強化した規則。2018年5月25日施行</div>
+            <div class="detail-point">主な権利：「忘れられる権利」「データポータビリティ権」「アクセス権」「異議申し立て権」</div>
+            <div class="detail-point">違反時の制裁：最大で年間全世界売上高の4%または2000万ユーロの高い方</div>
+            <div class="detail-point">EU AI Act（2024）の先駆けとなり、世界各国のデータ保護・AI規制法制に大きな影響</div>
+            <div class="highlight">第8章「法律・倫理」最重要。「忘れられる権利」「データポータビリティ」の定義と制裁金はほぼ毎回出る。EU AI Actとの違いも押さえる</div>
           </div>
         </div>
       </div>
@@ -735,6 +907,45 @@ svg#mindmap{width:100%;height:100%;overflow:visible}
             <div class="detail-point">NIST AI RMF：AIリスク管理のフレームワーク（Govern/Map/Measure/Manage）</div>
             <div class="detail-point">日本：AI事業者ガイドライン（2024年）・AI安全研究所（AISI）設立</div>
             <div class="highlight">EU AI Act のリスク分類（禁止/高リスク/限定リスク/最小リスク）とNIST AI RMFの4機能はG検定第8章の最頻出</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era4">
+        <div class="year-col"><span class="year">2024</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">Genspark ─ Mixture-of-Agents型AI検索</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">MainFunc.ai（パロアルト・シンガポール・東京）</span>
+            <span class="tag tag-concept">Mixture-of-Agents</span>
+            <span class="tag tag-concept">AIワークスペース</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">30以上のAIモデルをMixture-of-Agents方式で連携させるAIワークスペース</div>
+            <div class="detail-point">スライド・スプレッドシート・ドキュメントなどの成果物を自律的に生成・完成させる</div>
+            <div class="detail-point">Microsoft・Google・Meta・Pinterest出身者が創業。Series B 2億7,500万ドル調達（企業価値12.5億ドル）</div>
+            <div class="detail-point">OpenAI・Anthropicと提携。複数AIを組み合わせて単一モデルより高品質な出力を実現</div>
+            <div class="highlight">Mixture-of-Agents＝複数のAIモデルを協調させるアーキテクチャ。単一モデル限界の克服手法として注目</div>
+          </div>
+        </div>
+      </div>
+      <div class="event" data-era="era4">
+        <div class="year-col"><span class="year">2025</span></div>
+        <div class="dot"></div>
+        <div class="tl-card" onclick="tlToggleCard(this)">
+          <div class="card-header"><span class="card-title">Manus ─ Meta傘下の自律型AIエージェント</span></div>
+          <div class="card-tags">
+            <span class="tag tag-org">Butterfly Effect社 → Meta傘下（2025年）</span>
+            <span class="tag tag-concept">自律型AIエージェント</span>
+            <span class="tag tag-concept">業務自動化・CRM連携</span>
+          </div>
+          <div class="card-detail">
+            <div class="detail-point">元Butterfly Effect社（中国）が開発。2025年3月公開後、数ヶ月でMeta傘下に</div>
+            <div class="detail-point">特徴：外部システム（CRM・Webフォーム）との連携や大規模な業務自動化を得意とする</div>
+            <div class="detail-point">ローンチ後わずか数ヶ月で147兆トークン処理・8,000万台超の仮想コンピュータ作成を記録</div>
+            <div class="detail-point">Meta傘下後もシンガポールから独立サービスとして運営継続。数十億ユーザーへの展開を計画</div>
+            <div class="detail-point">位置づけ：MetaがManusを「AIをリアル世界で実行する実行レイヤー」として活用</div>
+            <div class="highlight">Genspark（複数AI連携の検索・生成）vs Manus（外部システム連携・業務自動化）の対比で問われることがある。Manus＝Meta傘下の自律型エージェント</div>
           </div>
         </div>
       </div>
