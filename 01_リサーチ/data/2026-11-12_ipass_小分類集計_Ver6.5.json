@@ -1,0 +1,824 @@
+[
+ {
+  "no": 1,
+  "dai": "1:企業と法務",
+  "chu": "1:企業活動",
+  "name": "経営・組織論",
+  "terms": 63,
+  "common": 38,
+  "review": 4,
+  "only": 21,
+  "calc": [
+   "データ量"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 2,
+  "dai": "1:企業と法務",
+  "chu": "1:企業活動",
+  "name": "業務分析・データ利活用",
+  "terms": 79,
+  "common": 31,
+  "review": 4,
+  "only": 44,
+  "calc": [
+   "平均",
+   "擬似",
+   "確率"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 3,
+  "dai": "1:企業と法務",
+  "chu": "1:企業活動",
+  "name": "会計・財務",
+  "terms": 17,
+  "common": 11,
+  "review": 1,
+  "only": 5,
+  "calc": [
+   "利益",
+   "損益分岐",
+   "計算",
+   "財務諸表"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 4,
+  "dai": "1:企業と法務",
+  "chu": "2:法務",
+  "name": "知的財産権",
+  "terms": 16,
+  "common": 8,
+  "review": 2,
+  "only": 6,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 5,
+  "dai": "1:企業と法務",
+  "chu": "2:法務",
+  "name": "セキュリティ関連法規",
+  "terms": 15,
+  "common": 10,
+  "review": 3,
+  "only": 2,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 6,
+  "dai": "1:企業と法務",
+  "chu": "2:法務",
+  "name": "労働関連・取引関連法規",
+  "terms": 14,
+  "common": 9,
+  "review": 0,
+  "only": 5,
+  "calc": [
+   "利益"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 7,
+  "dai": "1:企業と法務",
+  "chu": "2:法務",
+  "name": "その他の法律・ガイドライン・情報倫理",
+  "terms": 21,
+  "common": 16,
+  "review": 1,
+  "only": 4,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 8,
+  "dai": "1:企業と法務",
+  "chu": "2:法務",
+  "name": "標準化関連",
+  "terms": 15,
+  "common": 1,
+  "review": 0,
+  "only": 14,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 9,
+  "dai": "2:経営戦略",
+  "chu": "3:経営戦略マネジメント",
+  "name": "経営戦略手法",
+  "terms": 29,
+  "common": 18,
+  "review": 1,
+  "only": 10,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 10,
+  "dai": "2:経営戦略",
+  "chu": "3:経営戦略マネジメント",
+  "name": "マーケティング",
+  "terms": 35,
+  "common": 18,
+  "review": 3,
+  "only": 14,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 11,
+  "dai": "2:経営戦略",
+  "chu": "3:経営戦略マネジメント",
+  "name": "ビジネス戦略と目標・評価",
+  "terms": 5,
+  "common": 4,
+  "review": 0,
+  "only": 1,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 12,
+  "dai": "2:経営戦略",
+  "chu": "3:経営戦略マネジメント",
+  "name": "経営管理システム",
+  "terms": 9,
+  "common": 3,
+  "review": 1,
+  "only": 5,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 13,
+  "dai": "2:経営戦略",
+  "chu": "4:技術戦略マネジメント",
+  "name": "技術開発戦略の立案・技術開発計画",
+  "terms": 23,
+  "common": 16,
+  "review": 1,
+  "only": 6,
+  "calc": [
+   "求め"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 14,
+  "dai": "2:経営戦略",
+  "chu": "5:ビジネスインダストリ",
+  "name": "ビジネスシステム",
+  "terms": 54,
+  "common": 20,
+  "review": 9,
+  "only": 25,
+  "calc": [
+   "アルゴリズム"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 15,
+  "dai": "2:経営戦略",
+  "chu": "5:ビジネスインダストリ",
+  "name": "エンジニアリングシステム",
+  "terms": 6,
+  "common": 1,
+  "review": 1,
+  "only": 4,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 16,
+  "dai": "2:経営戦略",
+  "chu": "5:ビジネスインダストリ",
+  "name": "e-ビジネス",
+  "terms": 26,
+  "common": 11,
+  "review": 3,
+  "only": 12,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 17,
+  "dai": "2:経営戦略",
+  "chu": "5:ビジネスインダストリ",
+  "name": "IoT システム・組込みシステム",
+  "terms": 25,
+  "common": 12,
+  "review": 3,
+  "only": 10,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 18,
+  "dai": "3:システム戦略",
+  "chu": "6:システム戦略",
+  "name": "情報システム戦略",
+  "terms": 4,
+  "common": 4,
+  "review": 0,
+  "only": 0,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 19,
+  "dai": "3:システム戦略",
+  "chu": "6:システム戦略",
+  "name": "業務プロセス",
+  "terms": 21,
+  "common": 13,
+  "review": 1,
+  "only": 7,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 20,
+  "dai": "3:システム戦略",
+  "chu": "6:システム戦略",
+  "name": "ソリューションビジネス",
+  "terms": 13,
+  "common": 5,
+  "review": 4,
+  "only": 4,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 21,
+  "dai": "3:システム戦略",
+  "chu": "6:システム戦略",
+  "name": "システム活用促進・評価",
+  "terms": 7,
+  "common": 1,
+  "review": 0,
+  "only": 6,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 22,
+  "dai": "3:システム戦略",
+  "chu": "7:システム企画",
+  "name": "システム化計画",
+  "terms": 6,
+  "common": 2,
+  "review": 0,
+  "only": 4,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 23,
+  "dai": null,
+  "chu": null,
+  "name": "要件定義",
+  "terms": 0,
+  "common": 0,
+  "review": 0,
+  "only": 0,
+  "calc": [],
+  "noterms": true
+ },
+ {
+  "no": 24,
+  "dai": "3:システム戦略",
+  "chu": "7:システム企画",
+  "name": "調達計画・実施",
+  "terms": 2,
+  "common": 1,
+  "review": 1,
+  "only": 0,
+  "calc": [
+   "見積"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 25,
+  "dai": "4:開発技術",
+  "chu": "8:システム開発技術",
+  "name": "システム開発技術",
+  "terms": 22,
+  "common": 0,
+  "review": 2,
+  "only": 20,
+  "calc": [
+   "工数",
+   "見積"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 26,
+  "dai": "4:開発技術",
+  "chu": "9:ソフトウェア開発管理技術",
+  "name": "開発プロセス・手法",
+  "terms": 23,
+  "common": 3,
+  "review": 1,
+  "only": 19,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 27,
+  "dai": "5:プロジェクトマネジメント",
+  "chu": "10:プロジェクトマネジメント",
+  "name": "プロジェクトマネジメント",
+  "terms": 11,
+  "common": 7,
+  "review": 4,
+  "only": 0,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 28,
+  "dai": "6:サービスマネジメント",
+  "chu": "11:サービスマネジメント",
+  "name": "サービスマネジメント",
+  "terms": 4,
+  "common": 2,
+  "review": 0,
+  "only": 2,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 29,
+  "dai": "6:サービスマネジメント",
+  "chu": "11:サービスマネジメント",
+  "name": "サービスマネジメントシステム",
+  "terms": 23,
+  "common": 9,
+  "review": 7,
+  "only": 7,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 30,
+  "dai": "6:サービスマネジメント",
+  "chu": "11:サービスマネジメント",
+  "name": "ファシリティマネジメント",
+  "terms": 4,
+  "common": 1,
+  "review": 0,
+  "only": 3,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 31,
+  "dai": "6:サービスマネジメント",
+  "chu": "12:システム監査",
+  "name": "システム監査",
+  "terms": 13,
+  "common": 6,
+  "review": 4,
+  "only": 3,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 32,
+  "dai": "6:サービスマネジメント",
+  "chu": "12:システム監査",
+  "name": "内部統制",
+  "terms": 2,
+  "common": 0,
+  "review": 0,
+  "only": 2,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 33,
+  "dai": null,
+  "chu": null,
+  "name": "離散数学",
+  "terms": 0,
+  "common": 0,
+  "review": 0,
+  "only": 0,
+  "calc": [
+   "基数",
+   "真理値",
+   "論理演算"
+  ],
+  "noterms": true
+ },
+ {
+  "no": 34,
+  "dai": "7:基礎理論",
+  "chu": "13:基礎理論",
+  "name": "応用数学",
+  "terms": 26,
+  "common": 7,
+  "review": 0,
+  "only": 19,
+  "calc": [
+   "平均",
+   "待ち",
+   "標準偏差",
+   "確率",
+   "計算",
+   "関数"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 35,
+  "dai": "7:基礎理論",
+  "chu": "13:基礎理論",
+  "name": "情報に関する理論",
+  "terms": 22,
+  "common": 6,
+  "review": 2,
+  "only": 14,
+  "calc": [
+   "アルゴリズム",
+   "バイト",
+   "ビット",
+   "関数"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 36,
+  "dai": "7:基礎理論",
+  "chu": "14:アルゴリズムとプログラミング",
+  "name": "データ構造",
+  "terms": 5,
+  "common": 0,
+  "review": 0,
+  "only": 5,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 37,
+  "dai": "7:基礎理論",
+  "chu": "14:アルゴリズムとプログラミング",
+  "name": "アルゴリズムとプログラミング",
+  "terms": 13,
+  "common": 0,
+  "review": 0,
+  "only": 13,
+  "calc": [
+   "アルゴリズム",
+   "フローチャート",
+   "擬似",
+   "流れ図",
+   "関数"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 38,
+  "dai": "7:基礎理論",
+  "chu": "14:アルゴリズムとプログラミング",
+  "name": "プログラム言語",
+  "terms": 18,
+  "common": 0,
+  "review": 1,
+  "only": 17,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 39,
+  "dai": "7:基礎理論",
+  "chu": "14:アルゴリズムとプログラミング",
+  "name": "その他の言語",
+  "terms": 5,
+  "common": 0,
+  "review": 1,
+  "only": 4,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 40,
+  "dai": "8:コンピュータシステム",
+  "chu": "15:コンピュータ構成要素",
+  "name": "プロセッサ",
+  "terms": 12,
+  "common": 4,
+  "review": 1,
+  "only": 7,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 41,
+  "dai": "8:コンピュータシステム",
+  "chu": "15:コンピュータ構成要素",
+  "name": "メモリ",
+  "terms": 19,
+  "common": 4,
+  "review": 4,
+  "only": 11,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 42,
+  "dai": "8:コンピュータシステム",
+  "chu": "15:コンピュータ構成要素",
+  "name": "入出力デバイス",
+  "terms": 22,
+  "common": 5,
+  "review": 12,
+  "only": 5,
+  "calc": [
+   "転送"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 43,
+  "dai": "8:コンピュータシステム",
+  "chu": "16:システム構成要素",
+  "name": "システムの構成",
+  "terms": 20,
+  "common": 3,
+  "review": 0,
+  "only": 17,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 44,
+  "dai": "8:コンピュータシステム",
+  "chu": "16:システム構成要素",
+  "name": "システムの評価指標",
+  "terms": 16,
+  "common": 0,
+  "review": 0,
+  "only": 16,
+  "calc": [
+   "MTBF",
+   "MTTR",
+   "平均",
+   "稼働率"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 45,
+  "dai": null,
+  "chu": null,
+  "name": "オペレーティングシステム",
+  "terms": 0,
+  "common": 0,
+  "review": 0,
+  "only": 0,
+  "calc": [],
+  "noterms": true
+ },
+ {
+  "no": 46,
+  "dai": "8:コンピュータシステム",
+  "chu": "17:ソフトウェア",
+  "name": "ファイルシステム",
+  "terms": 5,
+  "common": 0,
+  "review": 0,
+  "only": 5,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 47,
+  "dai": null,
+  "chu": null,
+  "name": "オフィスツール",
+  "terms": 0,
+  "common": 0,
+  "review": 0,
+  "only": 0,
+  "calc": [
+   "表計算",
+   "計算",
+   "関数"
+  ],
+  "noterms": true
+ },
+ {
+  "no": 48,
+  "dai": "8:コンピュータシステム",
+  "chu": "17:ソフトウェア",
+  "name": "オープンソースソフトウェア",
+  "terms": 2,
+  "common": 0,
+  "review": 0,
+  "only": 2,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 49,
+  "dai": "8:コンピュータシステム",
+  "chu": "18:ハードウェア",
+  "name": "ハードウェア（コンピュータ・入出力装置）",
+  "terms": 13,
+  "common": 6,
+  "review": 2,
+  "only": 5,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 50,
+  "dai": "9:技術要素",
+  "chu": "19:情報デザイン",
+  "name": "情報デザイン",
+  "terms": 8,
+  "common": 6,
+  "review": 0,
+  "only": 2,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 51,
+  "dai": "9:技術要素",
+  "chu": "19:情報デザイン",
+  "name": "インタフェース設計",
+  "terms": 18,
+  "common": 3,
+  "review": 0,
+  "only": 15,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 52,
+  "dai": "9:技術要素",
+  "chu": "20:情報メディア",
+  "name": "マルチメディア技術",
+  "terms": 34,
+  "common": 12,
+  "review": 4,
+  "only": 18,
+  "calc": [
+   "ビット",
+   "圧縮率"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 53,
+  "dai": "9:技術要素",
+  "chu": "20:情報メディア",
+  "name": "マルチメディア応用",
+  "terms": 13,
+  "common": 9,
+  "review": 0,
+  "only": 4,
+  "calc": [
+   "解像度"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 54,
+  "dai": "9:技術要素",
+  "chu": "21:データベース",
+  "name": "データベース方式",
+  "terms": 2,
+  "common": 1,
+  "review": 0,
+  "only": 1,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 55,
+  "dai": "9:技術要素",
+  "chu": "21:データベース",
+  "name": "データベース設計",
+  "terms": 11,
+  "common": 1,
+  "review": 2,
+  "only": 8,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 56,
+  "dai": null,
+  "chu": null,
+  "name": "データ操作",
+  "terms": 0,
+  "common": 0,
+  "review": 0,
+  "only": 0,
+  "calc": [],
+  "noterms": true
+ },
+ {
+  "no": 57,
+  "dai": "9:技術要素",
+  "chu": "21:データベース",
+  "name": "トランザクション処理",
+  "terms": 7,
+  "common": 2,
+  "review": 2,
+  "only": 3,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 58,
+  "dai": "9:技術要素",
+  "chu": "22:ネットワーク",
+  "name": "ネットワーク方式",
+  "terms": 27,
+  "common": 7,
+  "review": 5,
+  "only": 15,
+  "calc": [
+   "ビット"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 59,
+  "dai": "9:技術要素",
+  "chu": "22:ネットワーク",
+  "name": "通信プロトコル",
+  "terms": 22,
+  "common": 8,
+  "review": 1,
+  "only": 13,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 60,
+  "dai": "9:技術要素",
+  "chu": "22:ネットワーク",
+  "name": "ネットワーク応用",
+  "terms": 32,
+  "common": 16,
+  "review": 3,
+  "only": 13,
+  "calc": [
+   "転送"
+  ],
+  "noterms": false
+ },
+ {
+  "no": 61,
+  "dai": "9:技術要素",
+  "chu": "23:セキュリティ",
+  "name": "情報セキュリティ",
+  "terms": 61,
+  "common": 30,
+  "review": 4,
+  "only": 27,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 62,
+  "dai": "9:技術要素",
+  "chu": "23:セキュリティ",
+  "name": "情報セキュリティ管理",
+  "terms": 27,
+  "common": 17,
+  "review": 3,
+  "only": 7,
+  "calc": [],
+  "noterms": false
+ },
+ {
+  "no": 63,
+  "dai": "9:技術要素",
+  "chu": "23:セキュリティ",
+  "name": "情報セキュリティ対策・情報セキュリティ実装技術",
+  "terms": 73,
+  "common": 34,
+  "review": 6,
+  "only": 33,
+  "calc": [
+   "関数"
+  ],
+  "noterms": false
+ }
+]
